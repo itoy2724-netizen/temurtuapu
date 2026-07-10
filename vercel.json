@@ -7,30 +7,90 @@
       "runtime": "vercel-php@0.9.0"
     }
   },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
+      "source": "/acs/:file.php",
+      "destination": "/api/acs/:file.php"
     },
     {
-      "src": "/acs/(.*)\\.php",
-      "dest": "/api/acs/$1.php"
+      "source": "/acs/:file",
+      "destination": "/api/acs/:file.php"
     },
     {
-      "src": "/acs/(.*)",
-      "dest": "/api/acs/$1.php"
+      "source": "/index.php",
+      "destination": "/api/index.php"
     },
     {
-      "src": "/(index|randevu|odeme|odeme_hata|bekle|sonuc|heartbeat|3dredirect|tg_webhook)\\.php",
-      "dest": "/api/$1.php"
+      "source": "/randevu.php",
+      "destination": "/api/randevu.php"
     },
     {
-      "src": "/(index|randevu|odeme|odeme_hata|bekle|sonuc|heartbeat|3dredirect|tg_webhook)",
-      "dest": "/api/$1.php"
+      "source": "/odeme.php",
+      "destination": "/api/odeme.php"
     },
     {
-      "src": "/",
-      "dest": "/api/index.php"
+      "source": "/odeme_hata.php",
+      "destination": "/api/odeme_hata.php"
+    },
+    {
+      "source": "/bekle.php",
+      "destination": "/api/bekle.php"
+    },
+    {
+      "source": "/sonuc.php",
+      "destination": "/api/sonuc.php"
+    },
+    {
+      "source": "/heartbeat.php",
+      "destination": "/api/heartbeat.php"
+    },
+    {
+      "source": "/3dredirect.php",
+      "destination": "/api/3dredirect.php"
+    },
+    {
+      "source": "/tg_webhook.php",
+      "destination": "/api/tg_webhook.php"
+    },
+    {
+      "source": "/index",
+      "destination": "/api/index.php"
+    },
+    {
+      "source": "/randevu",
+      "destination": "/api/randevu.php"
+    },
+    {
+      "source": "/odeme",
+      "destination": "/api/odeme.php"
+    },
+    {
+      "source": "/odeme_hata",
+      "destination": "/api/odeme_hata.php"
+    },
+    {
+      "source": "/bekle",
+      "destination": "/api/bekle.php"
+    },
+    {
+      "source": "/sonuc",
+      "destination": "/api/sonuc.php"
+    },
+    {
+      "source": "/heartbeat",
+      "destination": "/api/heartbeat.php"
+    },
+    {
+      "source": "/3dredirect",
+      "destination": "/api/3dredirect.php"
+    },
+    {
+      "source": "/tg_webhook",
+      "destination": "/api/tg_webhook.php"
+    },
+    {
+      "source": "/",
+      "destination": "/api/index.php"
     }
   ]
 }
