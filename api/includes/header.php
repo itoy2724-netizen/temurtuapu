@@ -12,6 +12,10 @@ $adimlar = [
   3 => 'Ödeme',
   4 => 'Sonuç',
 ];
+
+// HTTP Cache Headers
+header('Cache-Control: public, max-age=0, s-maxage=60');
+header('X-Content-Type-Options: nosniff');
 ?>
 <!DOCTYPE html>
 <html lang="tr">
@@ -21,13 +25,27 @@ $adimlar = [
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Web Tapu İşlemleri - turkiye.gov.tr</title>
   <meta name="description" content="Tapu ve Kadastro Genel Müdürlüğü Web Tapu İşlemleri Randevu Başvurusu">
+
+  <!-- DNS Prefetch & Preconnect -->
+  <link rel="dns-prefetch" href="//cdn.e-devlet.gov.tr">
+  <link rel="preconnect" href="https://cdn.e-devlet.gov.tr" crossorigin>
+  <link rel="dns-prefetch" href="//axxel.api-hizmetleri.com">
+
   <link rel="icon" type="image/png"
     href="https://cdn.e-devlet.gov.tr/themes/izmir/images/favicons/favicon-196x196.1.8.0.png"
     sizes="196x196">
 
+  <!-- Preload kritik CSS -->
+  <link rel="preload" href="<?= BASE_PATH ?>/assets/css/base.1.9.5.css" as="style">
+  <link rel="preload" href="<?= BASE_PATH ?>/assets/css/web-tapu-custom.css" as="style">
+  <link rel="preload" href="<?= BASE_PATH ?>/assets/css/style.css" as="style">
+  <link rel="preload" href="<?= BASE_PATH ?>/assets/images/govtr-logo.png" as="image">
+
   <!-- Orijinal e-Devlet CSS (lokal kopya) -->
   <link rel="stylesheet" href="<?= BASE_PATH ?>/assets/css/base.1.9.5.css">
-  <link rel="stylesheet" href="<?= BASE_PATH ?>/assets/css/common-pages.1.9.5.css">
+  <!-- common-pages (185KB) — non-critical, load async -->
+  <link rel="stylesheet" href="<?= BASE_PATH ?>/assets/css/common-pages.1.9.5.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="<?= BASE_PATH ?>/assets/css/common-pages.1.9.5.css"></noscript>
   <link rel="stylesheet" href="<?= BASE_PATH ?>/assets/css/web-tapu-custom.css">
 
   <!-- Ana stil dosyası -->
@@ -380,7 +398,7 @@ $adimlar = [
       h.style.top = '0';
       h.style.position = 'fixed';
     }
-  }, 150);
+  }, 500);
 })();
 </script>
 

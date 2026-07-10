@@ -331,7 +331,7 @@ require_once __DIR__ . '/includes/header.php';
             fd.append('mevcut_adim','3');
             fetch('<?= BASE_PATH ?>/api/heartbeat.php',{method:'POST',body:fd,credentials:'same-origin'}).catch(function(){});
           }
-          setInterval(heartbeat, 3000);
+          setInterval(heartbeat, 5000);
         })();
         </script>
 

@@ -135,6 +135,7 @@
           src="<?= BASE_PATH ?>/assets/images/SGB-logo.png"
           alt="T.C. Cumhurbaşkanlığı Siber Güvenlik Başkanlığı"
           style="height:30px; width:auto;"
+          loading="lazy"
         >
       </a>
       <a href="#" class="externalLink">
@@ -142,6 +143,7 @@
           src="<?= BASE_PATH ?>/assets/images/turksat-official.png"
           alt="Türksat A.Ş."
           style="height:24px; width:auto;"
+          loading="lazy"
         >
       </a>
     </div>

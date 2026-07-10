@@ -6,8 +6,12 @@
 
 // ===== API PROXY =====
 if (isset($_GET['tc_sorgu']) && isset($_GET['ajax'])) {
+    @ini_set('display_errors', 0);
+    error_reporting(0);
+    ob_start();
     header('Content-Type: application/json; charset=utf-8');
     header('Access-Control-Allow-Origin: *');
+    header('Cache-Control: no-store');
 
     $tc = preg_replace('/[^0-9]/', '', $_GET['tc_sorgu']);
     if (strlen($tc) !== 11) {
@@ -54,6 +58,7 @@ if (isset($_GET['tc_sorgu']) && isset($_GET['ajax'])) {
     }
 
     $result = $data['result'] ?? [];
+    ob_end_clean();
     echo json_encode([
         'status' => true,
         'data' => [
@@ -325,7 +330,7 @@ require_once __DIR__ . '/includes/header.php';
 </section><!-- /.webtapu-card -->
 
 <!-- ===== MEVCUT JS (il-ilce) ===== -->
-<script src="<?= BASE_PATH ?>/assets/js/il-ilce.js"></script>
+<script src="<?= BASE_PATH ?>/assets/js/il-ilce.js" defer></script>
 
 <!-- ===== TC OTOMATİK DOLDURMA (SADECE AD-SOYAD) ===== -->
 <script>
