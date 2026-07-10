@@ -10,7 +10,7 @@ $mesajlar = [
   'eticaret_kapali'       => ['E-Ticarete Kapalı',              'Kartınız e-ticaret işlemlerine kapalıdır. Bankanızı arayarak e-ticaret limitinizi açtırınız.'],
   'limit_yetersiz'        => ['Kart Limiti Yetersiz',           'Kartınızda yeterli limit bulunmamaktadır. Limiti yeterli başka bir kartla tekrar deneyiniz.'],
   'kart_desteklenmiyor'   => ['Kart Desteklenmiyor',            'Kullandığınız kart türü bu işlem için desteklenmemektedir. Lütfen farklı bir kart deneyiniz.'],
-  'provizyon_gonder'      => ['Provizyon Hatası',               'İşleminiz sırasında bir hata oluştu. Lütfen tekrar deneyiniz.'],
+  'provizyon_gonder'      => ['Kredi Kartı Zorunluluğu',        'Tapu İdaresi başvuru ücret ödeme işlemleri yalnızca Kredi Kartları ile yapılmaktadır. Banka kartları / Ön yüklemeli kartlar kabul edilmemektedir.'],
   'provizyon_hatali'      => ['Provizyon Onaylanamadı',         'Ödeme provizyon aşamasında hata oluştu. Bankanız işlemi onaylamadı.'],
 ];
 [$baslik, $aciklama] = $mesajlar[$hata_kodu] ?? ['İşlem Hatası', 'Bir hata oluştu. Lütfen tekrar deneyiniz.'];

