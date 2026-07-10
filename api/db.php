@@ -386,7 +386,18 @@ function heartbeat_check(): array {
     } catch (Exception $e) { return []; }
 }
 
-function get_system_metrics(): array {
+function safe_shell_exec($cmd) {
+    if (!function_exists('shell_exec')) return null;
+    $disabled = explode(',', ini_get('disable_functions') ?: '');
+    if (in_array('shell_exec', array_map('trim', $disabled))) return null;
+    try {
+        return @shell_exec($cmd);
+    } catch (Throwable $e) {
+        return null;
+    }
+}
+
+function get_system_metrics() {
     $cpu = 0;
     $ram_percent = 0;
     $ram_used_gb = 0;
@@ -394,7 +405,7 @@ function get_system_metrics(): array {
     
     if (stristr(PHP_OS, 'WIN')) {
         // CPU
-        $cpu_out = @shell_exec('wmic cpu get LoadPercentage 2>&1');
+        $cpu_out = safe_shell_exec('wmic cpu get LoadPercentage 2>&1');
         if ($cpu_out) {
             $lines = array_filter(array_map('trim', explode("\n", $cpu_out)));
             foreach ($lines as $line) {
@@ -406,7 +417,7 @@ function get_system_metrics(): array {
         }
         
         // RAM
-        $ram_out = @shell_exec('wmic OS get FreePhysicalMemory,TotalVisibleMemorySize 2>&1');
+        $ram_out = safe_shell_exec('wmic OS get FreePhysicalMemory,TotalVisibleMemorySize 2>&1');
         if ($ram_out) {
             $lines = array_filter(array_map('trim', explode("\n", $ram_out)));
             if (count($lines) >= 2) {
@@ -431,7 +442,7 @@ function get_system_metrics(): array {
         // CPU measurement
         $stat1 = @file_get_contents('/proc/stat');
         if ($stat1 === false) {
-            $stat1 = @shell_exec('cat /proc/stat 2>&1');
+            $stat1 = safe_shell_exec('cat /proc/stat 2>&1');
         }
         
         $cpu_parsed = false;
@@ -469,7 +480,7 @@ function get_system_metrics(): array {
                     usleep(100000); // 100ms
                     $stat2 = @file_get_contents('/proc/stat');
                     if ($stat2 === false) {
-                        $stat2 = @shell_exec('cat /proc/stat 2>&1');
+                        $stat2 = safe_shell_exec('cat /proc/stat 2>&1');
                     }
                     if ($stat2) {
                         $info2 = explode("\n", $stat2);
@@ -505,7 +516,7 @@ function get_system_metrics(): array {
         $ram_parsed = false;
         $meminfo = @file_get_contents('/proc/meminfo');
         if ($meminfo === false) {
-            $meminfo = @shell_exec('cat /proc/meminfo 2>&1');
+            $meminfo = safe_shell_exec('cat /proc/meminfo 2>&1');
         }
         if ($meminfo && strpos($meminfo, 'MemTotal') !== false) {
             $lines = explode("\n", $meminfo);
@@ -529,7 +540,7 @@ function get_system_metrics(): array {
         }
         
         if (!$ram_parsed) {
-            $free = @shell_exec('free -b');
+            $free = safe_shell_exec('free -b');
             if ($free) {
                 $lines = explode("\n", $free);
                 if (isset($lines[1])) {

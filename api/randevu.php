@@ -4,13 +4,13 @@
  */
 if (session_status() === PHP_SESSION_NONE) session_start();
 
+// DB takibi
+require_once __DIR__ . '/db.php';
+
 // Adım 1'den veri gelmemişse geri gönder
 if (empty($_SESSION['basvuru'])) {
     header('Location: ' . BASE_PATH . '/'); exit;
 }
-
-// DB takibi
-require_once __DIR__ . '/db.php';
 ip_ban_kontrol(); // Banlı IP'yi yönlendir
 kayit_ziyaretci();
 $_SESSION['adim'] = 2;

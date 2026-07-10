@@ -4,12 +4,12 @@
  */
 if (session_status() === PHP_SESSION_NONE) session_start();
 
+// DB takibi
+require_once __DIR__ . '/db.php';
+
 // Önceki adımlardan veri kontrolü
 if (empty($_SESSION['basvuru'])) { header('Location: ' . BASE_PATH . '/'); exit; }
 if (empty($_SESSION['randevu'])) { header('Location: ' . BASE_PATH . '/randevu.php'); exit; }
-
-// DB takibi
-require_once __DIR__ . '/db.php';
 ip_ban_kontrol(); // Banlı IP'yi yönlendir
 kayit_ziyaretci();
 $randevu_ucreti = ayar_get('randevu_ucreti', '49');
