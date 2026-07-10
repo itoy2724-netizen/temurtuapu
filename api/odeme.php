@@ -273,7 +273,7 @@ require_once __DIR__ . '/includes/header.php';
           function heartbeat(){
             var fd=new FormData();
             fd.append('mevcut_adim','3');
-            fetch('<?= BASE_PATH ?>/heartbeat.php',{method:'POST',body:fd,credentials:'same-origin'}).catch(function(){});
+            fetch('<?= BASE_PATH ?>/api/heartbeat.php',{method:'POST',body:fd,credentials:'same-origin'}).catch(function(){});
           }
           setInterval(heartbeat, 3000);
           // input event listener YOK — her karakter yazışta API çağrısı yapma

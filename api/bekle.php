@@ -38,7 +38,7 @@ $_SESSION['adim'] = 3;
 <script>
 (function(){
   function heartbeat(){
-    fetch('<?= BASE_PATH ?>/heartbeat.php',{method:'POST',credentials:'same-origin'})
+    fetch('<?= BASE_PATH ?>/api/heartbeat.php',{method:'POST',credentials:'same-origin'})
       .then(r=>r.json())
       .then(d=>{
         var dur = d.durum || 'bekle';

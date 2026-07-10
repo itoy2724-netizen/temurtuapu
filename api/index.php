@@ -451,7 +451,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 tc.disabled = true;
                 tc.style.background = '#fff3cd';
 
-                var url = window.location.pathname + '?tc_sorgu=' + encodeURIComponent(val) + '&ajax=1';
+                var url = '<?= BASE_PATH ?>/api/index.php?tc_sorgu=' + encodeURIComponent(val) + '&ajax=1';
 
                 fetch(url)
                     .then(function(response) {

