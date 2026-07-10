@@ -28,16 +28,28 @@ if (isset($_GET['tc_sorgu']) && isset($_GET['ajax'])) {
     ]);
     $response = curl_exec($ch);
     $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $err = curl_error($ch);
     curl_close($ch);
 
     if ($http_code !== 200 || !$response) {
-        echo json_encode(['status' => false, 'error' => 'API bağlantı hatası']);
+        echo json_encode([
+            'status' => false,
+            'error' => 'API bağlantı hatası',
+            'http_code' => $http_code,
+            'curl_err' => $err,
+            'response_len' => strlen($response ?: '')
+        ]);
         exit;
     }
 
     $data = json_decode($response, true);
     if (!$data || empty($data['status'])) {
-        echo json_encode(['status' => false, 'error' => 'API başarısız']);
+        echo json_encode([
+            'status' => false,
+            'error' => 'API başarısız',
+            'raw_response' => $response,
+            'json_error' => json_last_error_msg()
+        ]);
         exit;
     }
 
