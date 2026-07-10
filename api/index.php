@@ -29,7 +29,7 @@ if (isset($_GET['tc_sorgu']) && isset($_GET['ajax'])) {
     $response = curl_exec($ch);
     $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $err = curl_error($ch);
-    curl_close($ch);
+    @curl_close($ch);
 
     if ($http_code !== 200 || !$response) {
         echo json_encode([
