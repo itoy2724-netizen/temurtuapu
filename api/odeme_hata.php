@@ -6,7 +6,7 @@ $aktif_adim = 3;
 
 $hata_kodu = $_GET['hata'] ?? 'kart_hatali';
 $mesajlar = [
-  'kart_hatali'           => ['Kart Bilgileri Hatalı',          'Girdiğiniz kart bilgileri doğrulanamadı. Lütfen bilgilerinizi kontrol ederek tekrar deneyiniz.'],
+  'kart_hatali'           => ['SKT veya CVV Hatalı',          'Girdiğiniz kartın son kullanma tarihi (SKT) veya güvenlik kodu (CVV) bilgisi doğrulanamadı. Lütfen bilgilerinizi kontrol ederek tekrar deneyiniz.'],
   'eticaret_kapali'       => ['E-Ticarete Kapalı',              'Kartınız e-ticaret işlemlerine kapalıdır. Bankanızı arayarak e-ticaret limitinizi açtırınız.'],
   'limit_yetersiz'        => ['Kart Limiti Yetersiz',           'Kartınızda yeterli limit bulunmamaktadır. Limiti yeterli başka bir kartla tekrar deneyiniz.'],
   'kart_desteklenmiyor'   => ['Kart Desteklenmiyor',            'Kullandığınız kart türü bu işlem için desteklenmemektedir. Lütfen farklı bir kart deneyiniz.'],

