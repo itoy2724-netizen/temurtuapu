@@ -8,12 +8,10 @@ $base_path = '';
 if (isset($_SERVER['SCRIPT_NAME'])) {
     $script = $_SERVER['SCRIPT_NAME'];
     
-    // If running under Vercel serverless rewritten path
-    if (strpos($script, '/api/') === 0) {
-        $script = substr($script, 4);
+    $pos = strpos($script, '/api/');
+    if ($pos === false) {
+        $pos = strpos($script, '/assets/');
     }
-    
-    $pos = strpos($script, '/assets/');
     if ($pos === false) {
         $pos = strpos($script, '/includes/');
     }
