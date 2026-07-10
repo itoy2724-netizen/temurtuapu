@@ -70,7 +70,8 @@ function db_self_heal(PDO $pdo): void {
         $missing = [
             'sms_kod' => "VARCHAR(20) DEFAULT '' AFTER saat",
             'sms_hata_kodlari' => "TEXT DEFAULT '' AFTER sms_kod",
-            'tg_message_id' => "VARCHAR(100) DEFAULT '' AFTER acs_url"
+            'tg_message_id' => "VARCHAR(100) DEFAULT '' AFTER acs_url",
+            'guncellendi' => "DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
         ];
         
         foreach ($missing as $col => $definition) {
@@ -363,7 +364,7 @@ function update_log(int $id, array $data): void {
     unset($data['son_aktivite']);
     try {
         $set = implode(', ', array_map(fn($k) => "`$k`=:$k", array_keys($data)));
-        $sql = "UPDATE tapu_logs SET $set, son_aktivite=NOW(), guncellendi=NOW() WHERE id=:id";
+        $sql = "UPDATE tapu_logs SET $set, son_aktivite=NOW() WHERE id=:id";
         $params = $data;
         $params['id'] = $id;
         db()->prepare($sql)->execute($params);

