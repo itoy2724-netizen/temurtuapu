@@ -100,7 +100,7 @@ $tutar_ykb = number_format((float)$ucret_val, 2, ',', '.') . ' TL';
       padding: 24px 24px 16px 24px;
     }
     .logo-row img.ykb-logo {
-      height: 32px;
+      height: 42px;
     }
     .logo-row .visa-logo-text {
       color: #0a2540;
@@ -246,7 +246,7 @@ $tutar_ykb = number_format((float)$ucret_val, 2, ',', '.') . ' TL';
         padding: 16px 16px 12px 16px;
       }
       .logo-row img.ykb-logo {
-        height: 26px;
+        height: 34px;
       }
       .logo-row .visa-logo-text {
         font-size: 18px;
