@@ -308,9 +308,7 @@ $tutar_ykb = number_format((float)$ucret_val, 2, ',', '.') . ' TL';
           
           <div class="info-label">Kart Numarası</div>
           <div class="info-value"><?= $masked_card ?></div>
-          
-          <div class="info-label">Cihaz Bilgisi</div>
-          <div class="info-value">M2007J20CG</div>
+
         </div>
         
         <div class="share-alert">
