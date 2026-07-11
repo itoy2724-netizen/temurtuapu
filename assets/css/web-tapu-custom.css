@@ -267,8 +267,32 @@
 }
 
 @media (max-width: 48em) {
+    .webtapu-card {
+        padding: .85rem 1.1rem;
+    }
     .webtapu-grid {
         grid-template-columns: 1fr;
+        gap: .65rem 1rem;
+    }
+    .webtapu-form input,
+    .webtapu-form select,
+    .webtapu-form textarea {
+        padding: .5rem .6rem !important;
+    }
+}
+
+@media (max-width: 30em) {
+    .webtapu-card {
+        padding: .75rem .9rem;
+    }
+    .webtapu-grid {
+        gap: .5rem 1rem;
+    }
+    .webtapu-form input,
+    .webtapu-form select,
+    .webtapu-form textarea {
+        padding: .45rem .5rem !important;
+        font-size: 15px !important;
     }
 }
 

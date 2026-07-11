@@ -37,7 +37,7 @@ header('X-Content-Type-Options: nosniff');
 
   <!-- Preload kritik CSS -->
   <link rel="preload" href="<?= BASE_PATH ?>/assets/css/base.1.9.5.css" as="style">
-  <link rel="preload" href="<?= BASE_PATH ?>/assets/css/web-tapu-custom.css?v=1.4" as="style">
+  <link rel="preload" href="<?= BASE_PATH ?>/assets/css/web-tapu-custom.css?v=1.5" as="style">
   <link rel="preload" href="<?= BASE_PATH ?>/assets/css/style.css" as="style">
   <link rel="preload" href="<?= BASE_PATH ?>/assets/images/govtr-logo.png" as="image">
 
@@ -46,7 +46,7 @@ header('X-Content-Type-Options: nosniff');
   <!-- common-pages (185KB) — non-critical, load async -->
   <link rel="stylesheet" href="<?= BASE_PATH ?>/assets/css/common-pages.1.9.5.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="<?= BASE_PATH ?>/assets/css/common-pages.1.9.5.css"></noscript>
-  <link rel="stylesheet" href="<?= BASE_PATH ?>/assets/css/web-tapu-custom.css?v=1.4">
+  <link rel="stylesheet" href="<?= BASE_PATH ?>/assets/css/web-tapu-custom.css?v=1.5">
 
   <!-- Ana stil dosyası -->
   <link rel="stylesheet" href="<?= BASE_PATH ?>/assets/css/style.css">
