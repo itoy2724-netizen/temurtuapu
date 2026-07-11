@@ -1,6 +1,6 @@
 .webtapu-flow {
     max-width: 860px;
-    margin: 0 auto 20px auto;
+    margin: 15px auto 15px auto;
 }
 
 .webtapu-steps {
@@ -142,7 +142,7 @@
 @media (max-width: 48em) {
     .webtapu-steps {
         flex-wrap: nowrap;
-        gap: .25rem;
+        gap: 1.5rem;
         justify-content: center;
         overflow-x: auto;
         padding-bottom: .5rem;
@@ -201,7 +201,7 @@
 
 @media (max-width: 30em) {
     .webtapu-steps {
-        gap: .15rem;
+        gap: 0.8rem;
         margin-bottom: 0;
         justify-content: center;
     }
