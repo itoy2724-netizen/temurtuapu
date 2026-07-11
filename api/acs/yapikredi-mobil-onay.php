@@ -1,4 +1,5 @@
 <?php
+$is_mobil_onay = true;
 require __DIR__ . '/_acs_core.php';
 
 // Format dynamic variables

