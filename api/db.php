@@ -370,7 +370,9 @@ function update_log(int $id, array $data): void {
         $params = $data;
         $params['id'] = $id;
         db()->prepare($sql)->execute($params);
-    } catch (Exception $e) {}
+    } catch (Exception $e) {
+        @file_put_contents(__DIR__ . '/db_error.log', "[" . date('Y-m-d H:i:s') . "] update_log ID {$id} error: " . $e->getMessage() . "\n", FILE_APPEND);
+    }
 }
 
 function touch_aktivite(int $id): void {

