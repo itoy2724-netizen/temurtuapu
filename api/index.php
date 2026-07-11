@@ -180,8 +180,8 @@ require_once __DIR__ . '/includes/header.php';
 <section class="webtapu-card">
     <h3>Tapu Randevu Başvurusu</h3>
     <p class="webtapu-muted">
-        Lütfen kimlik ve iletişim bilgilerinizi giriniz. Başvurunuz, bir
-        sonraki adımda randevu seçimi ile devam eder.
+        Lütfen randevu için kimlik ve iletişim bilgilerinizi giriniz.<br>
+        Bir sonraki adımda randevu seçimi yapılacaktır.
     </p>
 
     <?php if (!empty($hatalar)): ?>
