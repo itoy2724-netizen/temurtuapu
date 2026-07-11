@@ -77,8 +77,8 @@ $tutar_ykb = number_format((float)$ucret_val, 2, ',', '.') . ' TL';
       flex: 1;
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 16px;
+      align-items: flex-start;
+      padding: 32px 16px;
     }
     
     /* Card with exact borders from screenshot */
@@ -236,7 +236,8 @@ $tutar_ykb = number_format((float)$ucret_val, 2, ',', '.') . ' TL';
         font-size: 11.5px;
       }
       .container {
-        padding: 10px;
+        align-items: flex-start;
+        padding: 16px 10px;
       }
       .card {
         border-width: 4px; /* Slightly thinner border on mobile */
