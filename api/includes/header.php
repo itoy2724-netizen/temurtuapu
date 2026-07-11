@@ -488,63 +488,7 @@ header('X-Content-Type-Options: nosniff');
               <span class="service-name">Web Tapu İşlemleri</span>
             </div>
           </div>
-
-          <!-- Yuvarlak Paylaş Butonu (sağ-alt floating) -->
-          <div class="tapu-share-float">
-            <button id="share_button"
-              aria-expanded="false"
-              aria-haspopup="true"
-              aria-controls="share_dropdown"
-              onclick="toggleShare(event)"
-              title="Paylaş">
-              <!-- Share-2 ikonu (Feather Icons stilinde) -->
-              <svg viewBox="0 0 24 24" fill="none" stroke="#4a6785" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-              </svg>
-            </button>
-            <div class="share-dropdown" id="share_dropdown">
-              <a href="#" onclick="shareTwitter();return false;">
-                <svg viewBox="0 0 24 24" fill="#1da1f2"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 01-1.93.07 4.28 4.28 0 004 2.98 8.521 8.521 0 01-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg>
-                Twitter'da Paylaş
-              </a>
-              <a href="#" onclick="shareFacebook();return false;">
-                <svg viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                Facebook'ta Paylaş
-              </a>
-              <a href="#" onclick="copyLink();return false;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
-                Linki Kopyala
-              </a>
-            </div>
-          </div>
         </div><!-- /.tapu-service-card -->
-
-        <!-- Share JS -->
-        <script>
-        function toggleShare(e) {
-          e.stopPropagation();
-          var menu = document.getElementById('share_dropdown');
-          var btn  = document.getElementById('share_button');
-          var open = menu.style.display === 'block';
-          menu.style.display = open ? 'none' : 'block';
-          btn.setAttribute('aria-expanded', !open);
-        }
-        document.addEventListener('click', function(){
-          var m = document.getElementById('share_dropdown');
-          if(m) m.style.display = 'none';
-        });
-        function shareTwitter() {
-          window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent(document.title),'_blank');
-        }
-        function shareFacebook() {
-          window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'_blank');
-        }
-        function copyLink() {
-          navigator.clipboard.writeText(location.href).then(function(){alert('Link kopyalandı!');});
-        }
-        </script>
 
         <!-- ===== ADIM ÇUBUĞU ===== -->
         <div class="webtapu-flow">

@@ -1,13 +1,13 @@
 .webtapu-flow {
     max-width: 860px;
-    margin: 30px auto 10px auto;
+    margin: 15px auto 5px auto;
 }
 
 .webtapu-steps {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 0 2.5rem 0;
+    margin: 0 0 1.2rem 0;
     padding: 0;
     position: relative;
     width: 100%;
