@@ -212,19 +212,19 @@
     }
     
     .webtapu-step-number {
-        width: 24px;
-        height: 24px;
-        min-width: 24px;
-        font-size: .7rem;
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        font-size: 1rem;
     }
     
     .webtapu-step-number svg {
-        width: 12px;
-        height: 12px;
+        width: 14px;
+        height: 14px;
     }
     
     .webtapu-step-label {
-        font-size: .65rem;
+        font-size: .8rem;
         line-height: 1;
     }
     
